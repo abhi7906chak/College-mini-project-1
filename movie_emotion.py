@@ -1,0 +1,55 @@
+import re
+
+import requests
+from bs4 import BeautifulSoup
+
+# Dictionary to map emotions to IMDb URLs
+URLS = {
+    "drama": "https://www.imdb.com/search/title/?title_type=feature&genres=drama",
+    "action": "https://www.imdb.com/search/title/?title_type=feature&genres=action",
+    "comedy": "https://www.imdb.com/search/title/?title_type=feature&genres=comedy",
+    "horror": "https://www.imdb.com/search/title/?title_type=feature&genres=horror",
+    "crime": "https://www.imdb.com/search/title/?title_type=feature&genres=crime",
+}
+
+
+def main(emotion):
+    emotion = emotion.lower()  # Convert input to lowercase
+    url = URLS.get(emotion)
+    if not url:
+        print("Invalid emotion.")
+        return []
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Check for HTTP errors
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return []
+
+    soup = BeautifulSoup(response.text, "lxml")
+
+    # Extract movie titles
+    titles = [
+        a.get_text() for a in soup.find_all("a", href=re.compile(r"/title/tt\d+/"))
+    ]
+    return titles
+
+
+# Driver Function
+if __name__ == "__main__":
+    emotion = input("Enter the emotion: ").strip()
+    movie_titles = main(emotion)
+
+    if not movie_titles:
+        print("No titles found.")
+    else:
+        max_titles = (
+            14 if emotion in ["drama", "action", "comedy", "horror", "crime"] else 12
+        )
+        for title in movie_titles[:max_titles]:
+            print(title)

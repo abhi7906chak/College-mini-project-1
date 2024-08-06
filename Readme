@@ -1,0 +1,27 @@
+# Movie Titles Scraper
+
+This project is a simple web scraper that fetches movie titles based on different genres (or emotions) from IMDb. It uses Python with the `requests` and `BeautifulSoup` libraries.
+
+## Features
+
+- Fetch movie titles from IMDb based on genre
+- Handle various input cases (e.g., "aCtion", "COMEDY", etc.)
+- Output a list of movie titles
+
+## Requerments
+
+Make sure you have Python installed on your machine. You will also need the following Python libraries:
+- `requests`
+- `beautifulsoup4`
+
+You can install these libraries using pip:
+
+"  pip install requests beautifulsoup4  "
+
+
+Then run the code in .py file.
+
+Acknowledgements
+- IMDb for providing the movie data.
+- BeautifulSoup for making web scraping easy.
+- Requests for handling HTTP requests.
