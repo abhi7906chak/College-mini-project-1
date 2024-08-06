@@ -1,3 +1,6 @@
+@Autor Abhishek Kumar Chak 
+@Date - 08/06/2024 / (August)
+
 # Movie Titles Scraper
 
 This project is a simple web scraper that fetches movie titles based on different genres (or emotions) from IMDb. It uses Python with the `requests` and `BeautifulSoup` libraries.
@@ -25,3 +28,5 @@ Acknowledgements
 - IMDb for providing the movie data.
 - BeautifulSoup for making web scraping easy.
 - Requests for handling HTTP requests.
+
+Feel free to contribute to this project by submitting issues or pull requests!
